@@ -1,8 +1,4 @@
 
-// SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
-
-
-
 window.addEventListener("load", ()=>{
 	var EmployeeID, name, extension, email, department;
 	var employeeCount = 0;
@@ -35,6 +31,7 @@ window.addEventListener("load", ()=>{
 		forma.reset();
 		// INCREMENENT THE NUMBER OF EMPLOYEES IN THE TABLE
 		employeeCount++;
+		// SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
 		employeeCountTag.innerHTML = "Total: "+employeeCount;
 	    // SET FOCUS BACK TO THE ID TEXT BOX
 		EmployeeID.focus();
@@ -53,15 +50,7 @@ window.addEventListener("load", ()=>{
 		const deleteBtn = document.body.appendChild(deleteButton);
 		let newText = document.createTextNode(deleteBtn);
 		cellID.appendChild(deleteButton);
-		deleteButton.addEventListener("click", ()=>{
-			const deleted = confirm("Please confirm if you want this employee to get delted from the table!\nEither OK or Cancel.");
-			if(deleted){
-				var i = deleteButton.parentNode.parentNode.rowIndex;
-				employeeTable.deleteRow(i);
-				employeeCount--;
-				employeeCountTag.innerHTML = "Total: " + employeeCount;
-			}
-		});
+		deleteRow(deleteButton);
 		cellID = row.insertCell(0);
 		// APPEND THE TEXT VALUES AS TEXT NODES WITHIN THE CELLS
 		newText = document.createTextNode(department.value);
@@ -90,6 +79,18 @@ window.addEventListener("load", ()=>{
 		e.preventDefault();			
 		addEmployees();
 	});
+	const deleteRow = (deleteButton)=>{
+		deleteButton.addEventListener("click", ()=>{
+			const deleted = confirm("Please confirm if you want this employee to get deleted from the table!\nEither OK or Cancel.");
+			if(deleted){
+				var i = deleteButton.parentNode.parentNode.rowIndex;
+				employeeTable.deleteRow(i);
+				employeeCount--;
+				// SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
+				employeeCountTag.innerHTML = "Total: " + employeeCount;
+			}
+		});
+	}
 	
 });
 
