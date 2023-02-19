@@ -50,6 +50,7 @@ window.addEventListener("load", ()=>{
 		const deleteBtn = document.body.appendChild(deleteButton);
 		let newText = document.createTextNode(deleteBtn);
 		cellID.appendChild(deleteButton);
+		// Added delete adevent litener button passing the delete button
 		deleteRow(deleteButton);
 		cellID = row.insertCell(0);
 		// APPEND THE TEXT VALUES AS TEXT NODES WITHIN THE CELLS
